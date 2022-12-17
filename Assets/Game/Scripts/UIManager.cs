@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     public GameObject panelFood;
     public GameObject panelColors;
     public GameObject panelRoulete;
+    public GameObject panelPause;
+
+    public bool boolPause = true;
 
     public static UIManager instance;
 
@@ -26,7 +29,30 @@ public class UIManager : MonoBehaviour
 
     }
 
-   
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (boolPause)
+            {
+                panelPause.SetActive(true);
+                Time.timeScale = 0;
+                boolPause = false;
+            }
+            else
+            {
+                panelPause.SetActive(false);
+                Time.timeScale = 1;
+                boolPause = true;
+            }
+        }
+
+
+
+    }
+
+
+
     public void ActivePanelFood()
     {
         panelFood.SetActive(true);
@@ -44,5 +70,11 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    
 
 }
